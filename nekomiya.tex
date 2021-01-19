@@ -1,0 +1,133 @@
+\documentclass[a4paper, 11pt, titlepage]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{url}
+
+
+\title{知能情報実験III（データマイニング班）\\発表タイトルやテーマ名}
+\author{グループの学籍番号列挙 xxx, yyy, zzz}
+\date{提出日：20xx年x月x日}
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+
+\abstract{概要}
+nothing else
+\section{はじめに}
+nothing else
+
+\section{実験方法}
+nothing else
+
+\newpage
+\section{実験結果}
+%事実として得られた結果を示そう。
+%なお、以下の点に留意すること。
+
+実験結果として、以下の結果が得られた。%ここの条件(batch_sizeとかmodelの中身とか)の補足をお願いします。
+%epoch10の値の共通項がコピペ事故起こしてそうですが大丈夫ですか？
+\begin{table}[htb]
+  \begin{tabular}{|l|c|c|}
+    \hline
+    epoch & subjectID accracy & fingerNum accracy \\ \hline
+    1 & 01.5333333052694798 \% & 63.01666498184204 \%  \\ \hline
+    3 & 61.283332109451294 \% & 89.48333263397217 \% \\ \hline
+    5 & 96.35000228881836 \% & 98.15000295639038 \%  \\ \hline
+    10 & hoge & 99.71666932106018 \%  \\ \hline
+    20 & 99.73333477973938 \% & 99.88333582878113 \%  \\ \hline
+    30 & 99.73333477973938 \% & 99.90000128746033 \% \\ \hline
+    31 & 99.73333477973938  \% & ----- \\ \hline
+    43 & ----- &99.88333582878113 \% \\ \hline
+  \end{tabular}
+\end{table}
+
+epochを20に固定した時のbatch\_sizeは以下の通りとなった。%アンダーバーは関数記号？エラーの元。ただの記号にするためのバックスラッシュが必要
+\begin{table}[htb]
+  \begin{tabular}{|l|c|c|}
+    \hline
+    batch\_size & subjectID accuracy & fingerNum accuracy  \\ \hline
+    32 & 99.73333477973938 \% & 99.90000128746033 \% \\ \hline
+    64 & 99.73333477973938 \% & 99.88333582878113 \% \\ \hline
+    128 & 99.71666932106018 \% & 99.88333582878113 \% \\ \hline
+  \end{tabular}
+\end{table}
+
+%ここの条件(batch_sizeとかepochとか)の補足をお願いします。
+\begin{table}[htb]
+  \begin{tabular}{|l|c|c|}
+    \hline
+    LeakyReLU (alpha=-0.5) & 99.43333268165588 \% & 99.88333582878113 \% \\ \hline
+    LeakyReLU (alpha=0.3) & 99.71666932106018 \% & 99.73333477973938 \% \\ \hline
+    LeakyReLU (alpha=0.5) & 99.6999979019165 \% & 99.6333360671997 \% \\ \hline
+  \end{tabular}
+\end{table}
+
+%追加する時のtemplate
+\begin{table}[htb]
+  \begin{tabular}{|l|c|c|}
+    \hline
+    hogehoge & subjectID accuracy & fingerNum accuracy  \\ \hline
+    hoge & hoge \% & hoge \% \\ \hline
+    hoge & hoge \% & hoge \% \\ \hline
+  \end{tabular}
+\end{table}
+
+
+
+
+\section{考察}
+nothing else
+
+\section{意図していた実験計画との違い}
+%グループワークとして2ヶ月程度の時間が用意されていた。
+%ガントチャート\ref{ganttchart}等、何かしら工夫して全体の計画を述べよう。
+%これらの期間をどのように使おうとし、実際どうだったのかについて自己評価（振り返り）してみよう。
+%大きなズレがある場合それは何故起きたのか、どうやればそのギャップを縮められそうか検討してみよう。
+当初予定していた実験計画は以下の通りとなる。
+\begin{itemize}
+\item	６週目(11/17)：テーマ決め、データセット探し、あと色々
+\item	７週目(11/24)：特徴ベクトルの抽出とかコード探して理解したりとか
+\item	８週目(12/1)  ：画像認識をコードに落とし込む
+\item	９週目(12/8)  ：実験開始？出来上がったコードを動かす段階？
+\item	10週目(12/15)：コードや特徴ベクトルの調整1
+\item	11週目(12/22)：
+\item	12週目(1/5)  ：
+\item	13週目(1/12)：改善実験？
+\item	14週目(1/19)：
+\item	15週目(1/26)：レポート・プレゼン資料作成
+\item	期末テスト日(2/2)：最終発表
+\end{itemize}
+上記の予定は11/17日に作成されたもの。これ以降に追加された締め切り予定に、
+\begin{itemize}
+\item	15週目(1/26)：レポート初期版の提出日
+\item	(2/16)：Github公開
+\end{itemize}
+がある。
+
+実際の進捗の経過をまとめると、下記の通りとなる。
+\begin{itemize}
+\item	６週目(11/17)：テーマ決定(画像認証/fingerprint)・データセット探し、画像認証に対しての学習
+\item	７週目(11/24)：指紋の特徴量の分析、CNNの画像認証コードの検索
+\item	８週目(12/1)  ：参考するCNNコードの決定、コードの内容の分析・実行%私だけPython消してました
+\item	９週目(12/8)  ：コードの内容の分析・実行2nd
+\item	10週目(12/15)：コードの内容の分析3rd・amaneによる実行開始・実験目的の草案
+\item	11週目(12/22)：コードの内容の分析4th・実行2nd。またamaneで画像データの出力は難しいと判断。来年度に向けたの引継ぎ
+\item	12週目(1/5)  ：コードの内容の分析5th・epoch数を変えた大規模実験・Python/Keras環境の統一
+\item	13週目(1/12)：コードの内容の分析6th・batch\_sizeやLeakyReLUを変更した実験
+\item	14週目(1/19)：レポートの作成・amaneによる実験
+\item	15週目(1/26)：
+\item	期末テスト日(2/2)：
+\end{itemize}
+
+l'.').oO(だいぶふわふわした計画とは違うけど、まあ順調に進んでるのでは？)
+
+%\usepackage{pgfgantt}    ←追加内容←追加しませんでした
+
+
+\section{まとめ}
+nothing else
+
+
+\end{document}
