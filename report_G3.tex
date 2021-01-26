@@ -41,51 +41,32 @@ Convolutional Neural Network （これよりCNNと呼ぶ）は畳み込みニュ
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.4]{cnn3.png}
+  \includegraphics[scale=0.3]{cnn3.png}
   \caption{CNN解説手順３}
   \label{cnn}
 \end{figure}
 
 
-\subsection{実験の目的}
-
-
 \subsection{テーマ指紋認証とは}
 本グループでは、授業の中でデータマイニングについて学び、それらの応用実験として、画像認識について分析しようと考えた。そして、データマイニングを行う識別手としてCNNに目をつけ、データの分類ラベルがはっきりしており、複雑である指紋認証の分析、精度改善を行うこととなった。CNNは畳み込み処理を利用したニューラルネットワークであり、どのくらい畳み込み処理を行うのか、どのくらいニューラルネットワークを深くするのかは定義されていない。
 
-（例）
-本グループでは＊＊における＊＊することを対象問題として設定した。
-＊＊とは\cite{theme1}によると〜〜〜であり、＊＊を＊＊することで＊＊に寄与する。
-また\cite{theme2}によると〜〜〜とも述べられており、
-
-
 
 \section{実験方法}
-実験手順を過去形で述べよう。日誌のように時系列ではなく、成果物として報告する最終版を再現するための実験手順で良い。
-第三者が再現するために必要な手順であることが重要だ。
-また、列挙した項目毎に具体的な内容をsubsectionで述べよう。
 
-（あくまでも例です）
-\begin{enumerate}
- \item 実験目的
- \item 実験計画
- \item データセット構築
- \item モデルの選定
- \item パラメータ調整
-\end{enumerate}
 
 \subsection{実験目的}
 実験を通して明らかにしたいこと、確認したいこと、検証したいことを述べよう。
 
+
 \subsection{データセット構築}
-既にどこかで公開されているデータセットをダウンロードして利用したのならば、そのURLを掲載する程度で構いません。
-独自構築した場合にはその構築方法を述べよう。
+Kaggleより、指紋のデータセットを利用している。\url{https://www.kaggle.com/ruizgara/socofing}
 
 \subsection{モデル選定}
-どのようなモデルやアルゴリズムを利用したのか、何故それを選んだのか述べよう。
+アルゴリズムは序章で述べたとおり、CNNを利用しており、以下のコードを参考にしている。\url{https://www.kaggle.com/brianzz/subjectid-finger-cnnrecognizer}\\
+本アルゴリズムの運用において、指紋認証の正答率が十分に高い点、可読性に優れており改善手法を模索しやすい点に特に優れているため使用することにした。
 
 \subsection{パラメータ調整}
-手動調整が必要なパラメータについて、どのように調整したのか述べよう。
+CNNのパラメータ調整では、epoch数・画像データ数・batchsizeや活性化関数であるLeakyReLUを変更していった。
 
 
 \section{実験結果}
@@ -131,9 +112,12 @@ Convolutional Neural Network （これよりCNNと呼ぶ）は畳み込みニュ
 また今後やるべきことや後進に伝えたいこと等あれば自由に述べよう。
 
 \begin{thebibliography}{n}
-  \bibitem{kanazawa}レポート作成の手引き　レポートの基本的形式に関するガイド, \url{https://www.kanazawa-u.ac.jp/wp-content/uploads/2015/01/tebiki2.pdf}, 2020/07/02.
-	\bibitem{theme1}テーマ出典, 書籍or特定の記事or webpage, webpageの場合は参照日も記そう, 2020/07/02.
-	\bibitem{theme2}テーマ出典2, 出典は半角,.で書こう.
-	\bibitem{ganttchart}ガントチャート, \url{https://ja.wikipedia.org/wiki/ガントチャート}, 2020/07/02.
+  \bibitem{cnn} CNN解説, \\
+  \url{https://udemy.benesse.co.jp/data-science/ai/convolution-neural-network.html}, 2021/01/026.
+  \bibitem{dataset}指紋データセット, 
+  \url{https://www.kaggle.com/ruizgara/socofing}
+  \bibitem{algorithm}アルゴリズム, \url{https://www.kaggle.com/ruizgara/socofing}
+  \bibitem{}
 \end{thebibliography}
+
 \end{document}
