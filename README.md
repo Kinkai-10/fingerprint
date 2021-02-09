@@ -7,7 +7,7 @@
 
 # インストール
 **python 3.7.9のインストール方法**<br>
-pythonの[公式サイト](https://www.python.org/downloads/release/python-379/)から自分のOSや環境に合わせたインストーラーをダウンロードした後、インストーラーを起動しインストールする。<br>　　
+pythonの[公式サイト](https://www.python.org/downloads/release/python-379/)から自分のOSや環境に合わせたインストーラーをダウンロードした後、インストーラーを起動しインストールする。<br>
 **ライブラリのインストール方法**<br>
 `pip install Keras==2.4.3`のようにして上記のライブラリをインストールする。
 
