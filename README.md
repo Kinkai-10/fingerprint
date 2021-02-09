@@ -6,9 +6,9 @@
 `Keras 2.4.3` `tensorflow 2.2.0` `scikit-learn 0.23.2` `seaborn 0.11.0` `matplotlib 3.3.1`
 
 # インストール
-**python 3.7.9のインストール方法**　　
-pythonの[公式サイト](https://www.python.org/downloads/release/python-379/)から自分のOSや環境に合わせたインストーラーをダウンロードした後、インストーラーを起動しインストールする。　　
-**ライブラリのインストール方法**  
+**python 3.7.9のインストール方法**<br>
+pythonの[公式サイト](https://www.python.org/downloads/release/python-379/)から自分のOSや環境に合わせたインストーラーをダウンロードした後、インストーラーを起動しインストールする。<br>　　
+**ライブラリのインストール方法**<br>
 `pip install Keras==2.4.3`のようにして上記のライブラリをインストールする。
 
 # 使い方
