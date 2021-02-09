@@ -29,7 +29,7 @@ Convolutional Neural Network （これよりCNNと呼ぶ）は畳み込みニュ
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.4]{cnn1.png}
-  \caption{CNN解説手順１(\cite{cnn}より引用)}
+  \caption{CNN解説手順１(参考サイト\cite{cnn}より引用)}
   \label{cnn1}
 \end{figure}
 
@@ -39,7 +39,7 @@ Convolutional Neural Network （これよりCNNと呼ぶ）は畳み込みニュ
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.3]{cnn2.png}
-  \caption{CNN解説手順２(\cite{cnn}より引用)}
+  \caption{CNN解説手順２(参考サイト\cite{cnn}より引用)}
   \label{cnn2}
 \end{figure}
 
@@ -48,7 +48,7 @@ Convolutional Neural Network （これよりCNNと呼ぶ）は畳み込みニュ
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.3]{cnn3.png}
-  \caption{CNN解説手順３(\cite{cnn}より引用)}
+  \caption{CNN解説手順３(参考サイト\cite{cnn}より引用)}
   \label{cnn3}
 \end{figure}
 
@@ -65,10 +65,12 @@ Convolutional Neural Network （これよりCNNと呼ぶ）は畳み込みニュ
 
 
 \subsection{データセット構築}
-Kaggleより、指紋のデータセット\footnote{\url{https://www.kaggle.com/ruizgara/socofing}}を利用している。
+Kaggleより、指紋のデータセット\cite{cnn}を利用している。
 
 \subsection{モデル選定}
-アルゴリズムは序章で述べたとおり、CNNを利用しており、\cite{algorithm}のコードを参考にしている。
+アルゴリズムは序章で述べたとおり、CNNを利用しており、SubjectID\&Finger\_CNNRecognizer
+\cite{algorithm}のコードを参考にしている。
+
 本アルゴリズムの運用において、指紋認証の正答率が十分に高い点、可読性に優れており改善手法を模索しやすい点に特に優れているため使用することにした。
 
 \subsection{パラメータ調整}
@@ -142,13 +144,8 @@ CNNのパラメータ調整では、epoch数・画像データ数・batchsizeや
 
 以上より、エポック数による精度の向上はやや見られたが、活性化関数が識別にどのような効果をもたらしているのかは読み取ることができなかった。
 
+\newpage%ここだけ改行入れてます。
 \section{意図していた実験計画との違い}
-%グループワークとして2ヶ月程度の時間が用意されていた。
-%ガントチャート\ref{ganttchart}等、何かしら工夫して全体の計画を述べよう。
-%これらの期間をどのように使おうとし、実際どうだったのかについて自己評価（振り返り）してみよう。
-%大きなズレがある場合それは何故起きたのか、どうやればそのギャップを縮められそうか検討してみよう。
-
-%https://ctan.org/pkg/pgfgantt
 当初予定していた実験計画は以下の通りとなる。
 下記の予定は11月17日に作成されたものである。後々詳しく決められた締め切り予定には(追加内容:)として記述する。%ラベルじゃ無いけど。
 
@@ -280,14 +277,15 @@ CNNのパラメータ調整では、epoch数・画像データ数・batchsizeや
 
 
 \begin{thebibliography}{n}
-  \bibitem{cnn} CNN解説, \\
-  \url{https://udemy.benesse.co.jp/data-science/ai/convolution-neural-network.html}, 2021/02/09.
+  \bibitem{cnn}
+「畳み込みニューラルネットワークとは？手順も丁寧に解説」, \\
+  \textless \url{https://udemy.benesse.co.jp/data-science/ai/convolution-neural-network.html}\textgreater 2021/02/09.
   
-  \bibitem{dataset}指紋データセット, 
-  \url{https://www.kaggle.com/ruizgara/socofing}, 2021/02/09.
+  \bibitem{dataset}ruizgara「Sokoto Coventry Fingerprint Dataset (SOCOFing)」\\
+  \textless \url{https://www.kaggle.com/ruizgara/socofing}\textgreater 2021/02/09.
   
-  \bibitem{algorithm}SubjectID\&Finger\_CNNRecognizer, \\
-  \url{https://www.kaggle.com/brianzz/subjectid-finger-cnnrecognizer}, 2021/02/09.
+  \bibitem{algorithm}Brian Zhang「SubjectID\&Finger\_CNNRecognizer」, \\
+  \textless \url{https://www.kaggle.com/brianzz/subjectid-finger-cnnrecognizer}\textgreater 2021/02/09.
   
 \end{thebibliography}
 
