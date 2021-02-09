@@ -1,12 +1,17 @@
-# fingerprint
+# 機械学習
+機械学習におけるパラメータ調整による学習の精度がどう変化するのかを調査した。
 
-上げ方
+# Demo
+今回の概要がわかるような図解を載せるらしい
+削除予定
+# Features
+セールスポイント、差別化の説明
+# 今回使用した環境
+`python 3.7.9` `Keras 2.4.3` `tensorflow 2.2`
 
-git add "変更したファイル"
+# Installation
 
-git commit -m "コミットメッセージ"
-
-git push -u origin main
-
-#変更したファイルは「Makefile」「template.pdf」「template.tex」「README.md」のどれかだと思います。
-#コミットメッセージは適当に
+# Usage
+# 注意点
+# Author
+# License
