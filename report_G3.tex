@@ -4,7 +4,40 @@
 \usepackage{amsmath}
 \usepackage{url}
 \usepackage{here}
-
+% ソースコード貼り付け用
+\usepackage{listings}
+\usepackage{plistings}
+\usepackage{color}
+% lstlisting環境の設定
+\lstset{
+  language=Python, % 言語の指定
+  numbers=left, % 行番号の位置
+  numberstyle={\scriptsize}, % 行番号の大きさ・色の設定
+  stepnumber=1, % 行番号の上がり幅
+  numbersep=1em, % 行番号と外枠の間の余白
+  breaklines=true, % 行の折り返し
+  breakindent=2ex, % 折り返した場合のインデント
+  %frame={tblr},
+  frame=single, % 枠線の設定
+  framesep=5pt, % 枠線の太さ
+  %basicstyle=,
+  %identifierstyle={\small},%
+  identifierstyle={\small \color[rgb]{0.1,0.1,0.1}},
+  %commentstyle={\small\itshape},%
+  commentstyle={\small\ttfamily \color[rgb]{0,0.5,0}},
+  %keywordstyle={\small\bfseries},%
+  keywordstyle={\small\bfseries \color[rgb]{0,0,1}},
+  ndkeywordstyle={\small},%
+  stringstyle={\small\ttfamily},
+  xleftmargin=1em, % 左余白
+  xrightmargin=5pt, % 右余白
+  lineskip=-0.3em, % 行間余白
+  showstringspaces=false, % スペースを記号に置き換えるか
+  captionpos=b, % キャプションの位置
+  abovecaptionskip=5pt, % キャプション上部の余白
+  belowcaptionskip=0pt, % キャプション下部の余白
+  escapechar=!,
+}
 
 \title{知能情報実験III（データマイニング班）\\指紋認証を用いたCNNの手法についての模索}
 \author{\textbf{185710A 金城海斗}\\
@@ -88,6 +121,45 @@ Kaggleより、指紋のデータセット\cite{cnn}を利用している。
 \clearpage
 \subsection{パラメータ調整}
 CNNのパラメータ調整では、epoch数・画像データ数・batchsizeや活性化関数であるLeakyReLUを変更していった。
+
+\begin{lstlisting}[caption=パラメーター調整code, label=parameter1]
+#学習の実行の準備
+history = [0] * nets
+CallBack = [0] * nets
+ReduceLR_minlr = [1e-9, 1e-7]
+epochs = 20
+#学習する回数
+batch_size = 64
+for i in range(nets):
+    CallBack[i] = [      #Callback:学習率の調整コード
+        callbacks.EarlyStopping(monitor='val_accuracy', patience=10, mode='max', verbose=1),
+        #監視する値の変化が停止した時に訓練を終了する。
+        #monitor:監視する値、ここでは'val_accurary'
+        #patience:ここで指定したエポック数の間(監視する値に)改善がないと訓練が停止
+        #mode:{auto,min,max}の内、一つ選択。
+        #minは監視する値の減少が停止した際に訓練終了。maxは監視する値の増加が停止した際に訓練を終了。autoは自動的に監視されいている値から推測。
+        callbacks.ReduceLROnPlateau(factor=0.1, patience=1, min_lr=ReduceLR_minlr[i], verbose=1),
+        #評価値の改善が止まった時に学習率を減らす。
+        #factor:学習率を減らす割合,
+        #patience:何エポック改善が見られなかったら学習率の削減を行うか,
+        #min_lr:学習率の下限
+        callbacks.TensorBoard(log_dir="./log_dir/"+model_name[i])]
+        #tensorboardによる基本的な可視化：Tensorboardのログを出力。異なる層への活性化ヒストグラムと同様に、訓練とテストの評価値を動的にグラフ化し、可視化できる。
+
+#学習開始！
+history[0] = model[0].fit(X_SubjectID_train, y_SubjectID_train,
+                    batch_size = batch_size,
+                    epochs = epochs, 
+                    validation_data = (X_SubjectID_val, y_SubjectID_val),
+                    verbose = 1, callbacks= CallBack[0])
+#history = model.fit():訓練データで学習を開始
+#X_SubjectID_train,y_SubjectID_train:訓練データ
+#batch_sizeはバッチサイズ
+#epochs:学習する回数
+#validation_data:評価用データの指定ここでは(X_SubjectID_val,y_SubjectID_val)
+#verbose:ログ出力の指定。0だとログ無し。
+#callback:学習率を調整
+\end{lstlisting}
 
 
 %\newpage
