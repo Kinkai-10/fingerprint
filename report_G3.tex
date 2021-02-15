@@ -121,9 +121,53 @@ Kaggleより、指紋のデータセット\cite{cnn}を利用している。
 \end{figure}
 
 \subsection{パラメータ調整}
-CNNのパラメータ調整では、epoch数・画像データ数・batchsizeや活性化関数であるLeakyReLUを変更していった。
+CNNのパラメータ調整では、epoch数・画像データ数・batchsizeや活性化関数であるLeakyReLUを変更していった。以下にコード変更部分を記載する。
+\begin{lstlisting}[caption=パラメーター調整code1, label=parameter1]
+#CNN
+nets = 2 #人を特定するnetと指を特定するnetの２つ用意
+model = [0] * nets
+final_Dense_units = [600, 10]
+model_name = ['SubjectID_Mod', 'FingerNum_Mod']
+for i in range(nets):
+    model[i] = Sequential(name=model_name[i])
+    #Sequential-モデル層を積み重ねる形式の記述方法。.addメソッドで簡単に層を追加できる。
 
-\begin{lstlisting}[caption=パラメーター調整code, label=parameter1]
+    model[i].add(layers.Conv2D(32, (5, 5), activation='relu', kernel_regularizer=regularizers.l2(0.001), input_shape = (64, 64, 1)))
+    #Conv2D２次元畳み込み層：5×5の大きさのフィルタを32枚使う
+    #activation= "relu":活性化関数ReLUはフィルタ後の入力データが０以下の時は出力０入力が０より大きい場合はそのまま出力
+    #kernel_regularizer:kerasのConvolution層(畳み込み層）に正則化を入れる
+    #正則化:過学習の回避
+    model[i].add(layers.BatchNormalization())
+    #各バッチ毎に、前の層の出力(このレイヤーへの入力)を正規化する。平均を0,標準偏差値を1に近づける変換を適用。
+    model[i].add(layers.MaxPool2D((2, 2)))
+    model[i].add(layers.Conv2D(64,(5, 5), activation='relu', kernel_regularizer=regularizers.l2(0.001)))
+    model[i].add(layers.BatchNormalization())
+    
+    model[i].add(layers.MaxPool2D((2, 2)))
+    #MaxPool2D：最大プーリング層：2×2の領域で最大の数値を出力する。
+    model[i].add(layers.Conv2D(128,(3, 3), activation='relu', kernel_regularizer=regularizers.l2(0.001)))
+    model[i].add(layers.BatchNormalization())
+    model[i].add(layers.MaxPool2D((2, 2)))
+    model[i].add(layers.Dropout(0.3))
+    #Dropout:ドロップアウトー過学習防止予防、全結合の層との繋がりを30%無効化している。
+    model[i].add(layers.Flatten())
+    #Flatten:平坦化(次元削除)ー１次元ベクトルに変換する。
+    model[i].add(layers.Dense(256, activation='relu'))
+    #Dense:全結合層、出力256,活性化関数ReLU
+    model[i].add(layers.Dropout(0.4))
+    #全結合層とのつながりを40%無効化
+    model[i].add(layers.Dense(final_Dense_units[i], activation='softmax'))
+    #全結合層、出力はここではfinal_Dense_unitsで与えている600と10
+    #Softmax関数で挿話が１となるように、各出力の予測確率を計算。
+
+    # モデルのコンパイル
+    model[i].compile(optimizer=optimizers.Adam(learning_rate=0.0001), loss="categorical_crossentropy", metrics=["accuracy"])
+    #loss="categorical_crossentropy"は損失化関数ー交差エントロピー誤差を指定している。識別問題などで使用される。
+    #optimizer=Adam()は最適化関数ーAdamを指定している。学習の最適化手法の一つ。
+    model[i].summary() #モデルの要約を出力
+\end{lstlisting}
+
+\begin{lstlisting}[caption=パラメーター調整code2, label=parameter2]
 #学習の実行の準備
 history = [0] * nets
 CallBack = [0] * nets
