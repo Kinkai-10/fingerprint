@@ -129,8 +129,8 @@ del X_fingerNum_train, X_fingerNum_val, y_fingerNum_train, y_fingerNum_val
 history = [0] * nets
 CallBack = [0] * nets
 ReduceLR_minlr = [1e-9, 1e-7]
-epochs = 20
-batch_size = 64
+epochs = 10
+batch_size = 32
 for i in range(nets):
     CallBack[i] = [
         callbacks.EarlyStopping(monitor='val_accuracy', patience=10, mode='max', verbose=1),
@@ -250,3 +250,5 @@ if Id_pred==Id_real and fingerNum_pred==fingerNum_real:
     print("Infomation confirm! Fingerprint matches: person Id",Id_pred, show_fingername(fingerNum_pred))
 else:
     print("Oops! Prediction is wrong!")
+
+# Brian Zhang,China, Shenzhen University, 2020
