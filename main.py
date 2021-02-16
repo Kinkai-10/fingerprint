@@ -105,18 +105,18 @@ model_name = ['SubjectID_Mod', 'FingerNum_Mod']
 for i in range(nets):
     model[i] = Sequential(name=model_name[i])
 
-    model[i].add(layers.Conv2D(32, (5, 5), activation='relu', kernel_regularizer=regularizers.l2(0.001), input_shape = (96, 96, 1)))
+    model[i].add(layers.Conv2D(32, (5, 5), activation='sigmoid', kernel_regularizer=regularizers.l20.001), input_shape = (96, 96, 1)))
     model[i].add(layers.BatchNormalization())
     model[i].add(layers.MaxPool2D((2, 2)))
-    model[i].add(layers.Conv2D(64,(5, 5), activation='relu', kernel_regularizer=regularizers.l2(0.001)))
+    model[i].add(layers.Conv2D(64,(5, 5), activation='sigmoid', kernel_regularizer=regularizers.l2(0.001)))
     model[i].add(layers.BatchNormalization())
     model[i].add(layers.MaxPool2D((2, 2)))
-    model[i].add(layers.Conv2D(128,(3, 3), activation='relu', kernel_regularizer=regularizers.l2(0.001)))
+    model[i].add(layers.Conv2D(128,(3, 3), activation='sigmoid', kernel_regularizer=regularizers.l2(0.001)))
     model[i].add(layers.BatchNormalization())
     model[i].add(layers.MaxPool2D((2, 2)))
     model[i].add(layers.Dropout(0.3))
     model[i].add(layers.Flatten())
-    model[i].add(layers.Dense(256, activation='relu'))
+    model[i].add(layers.Dense(256, activation='sigmoid'))
     model[i].add(layers.Dropout(0.4))
     model[i].add(layers.Dense(final_Dense_units[i], activation='softmax'))
 
